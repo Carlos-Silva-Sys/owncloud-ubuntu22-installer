@@ -119,15 +119,15 @@ http://IP_DEL_SERVIDOR
 
 ### Captura del dashboard
 
-![Dashboard OwnCloud](Dashboard_OwnCloud.png)
+![Dashboard OwnCloud](images/Dashboard_OwnCloud.png)
 
 ### Captura de la pantalla de login
 
-![Login OwnCloud](Login_OwnCloud.png)
+![Login OwnCloud](images/Login_OwnCloud.png)
 
 ### Captura del asistente de instalación web
 
-![Asistente de instalación web](Instalacion_web.png)
+![Asistente de instalación web](images/Instalacion_web.png)
 
 ---
 
@@ -197,8 +197,6 @@ owncloud-ubuntu22-installer/
     ├── Login_OwnCloud.png
     └── Instalacion_web.png
 ```
-
-> ⚠️ **Nota:** Si las imágenes están en la raíz del repositorio y no en una carpeta `images/`, actualiza las rutas del README. En tu caso, veo que las imágenes están en la raíz, así que el README ya está apuntando correctamente a `Dashboard_OwnCloud.png`, `Login_OwnCloud.png` e `Instalacion_web.png`.
 
 ---
 
