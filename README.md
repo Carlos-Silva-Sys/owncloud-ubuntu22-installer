@@ -1,6 +1,6 @@
 # ☁️ owncloud-ubuntu22-installer
 
-Instalación automática de OwnCloud en Ubuntu 22.04 LTS. Script que despliega Apache, MySQL, PHP 7.4, OwnCloud y aplicación LDAP en un solo paso.
+Instalación automática de OwnCloud en Ubuntu 22.04 LTS. Script que despliega Apache, MySQL, PHP 7.4 y OwnCloud en un solo paso.
 
 ---
 
@@ -38,15 +38,13 @@ STATIC_DNS="192.168.100.1, 8.8.8.8"
 ## 📋 Descripción
 
 **Problema que resuelve:**  
-Las instalaciones tradicionales de OwnCloud requieren múltiples pasos manuales (Apache, MySQL, PHP, configuración de LDAP y trusted domains). Este proceso puede tomar horas y es propenso a errores.
+Las instalaciones tradicionales de OwnCloud requieren múltiples pasos manuales (Apache, MySQL, PHP, configuración de trusted domains). Este proceso puede tomar horas y es propenso a errores.
 
 **Solución:**  
 Este script automatiza la instalación completa de OwnCloud en Ubuntu 22.04, incluyendo:
-- Apache2 + PHP 7.4 con todas las extensiones necesarias (**incluyendo php7.4-ldap**)
+- Apache2 + PHP 7.4 con todas las extensiones necesarias
 - MySQL con base de datos y usuario optimizados
 - Descarga y configuración automática de OwnCloud
-- **Instalación de la app `user_ldap` desde el mercado** (`occ market:install user_ldap`)
-- **Habilitación automática de la app LDAP** (`occ app:enable user_ldap`)
 - Configuración opcional de IP estática
 - Trusted domains configuradas automáticamente
 
@@ -61,7 +59,6 @@ Este script automatiza la instalación completa de OwnCloud en Ubuntu 22.04, inc
 | Apache2 | 2.4 | 80 / 443 |
 | MySQL | 8.0 | 3306 |
 | PHP | 7.4 | - |
-| LDAP | user_ldap app | - |
 
 ---
 
@@ -131,27 +128,6 @@ http://IP_DEL_SERVIDOR
 
 ---
 
-## 🔗 CONFIGURAR LDAP / ACTIVE DIRECTORY
-
-La aplicación `user_ldap` ya está **instalada y habilitada automáticamente** por el script.
-
-### Verificar en la terminal:
-
-```bash
-cd /var/www/html/owncloud
-sudo -u www-data php occ app:list | grep ldap
-```
-
-Debes ver `user_ldap` en la lista de aplicaciones habilitadas.
-
-### Configurar LDAP en la interfaz web:
-
-1. Inicia sesión como administrador
-2. Ve a **Ajustes** → **Administración** → **LDAP / Active Directory**
-3. Configura la conexión a tu servidor LDAP/AD
-
----
-
 ## 📥 CLIENTE DE ESCRITORIO (WINDOWS)
 
 Para conectar clientes Windows al servidor OwnCloud, descarga el cliente oficial:
@@ -173,9 +149,6 @@ sudo systemctl status apache2 mysql
 
 # Ver logs de OwnCloud
 sudo tail -f /var/www/html/owncloud/data/owncloud.log
-
-# Verificar aplicación LDAP instalada
-sudo -u www-data php /var/www/html/owncloud/occ app:list | grep ldap
 
 # Reiniciar servicios
 sudo systemctl restart apache2 mysql
