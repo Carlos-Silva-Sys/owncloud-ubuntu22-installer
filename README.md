@@ -1,6 +1,6 @@
 # ☁️ owncloud-ubuntu22-installer
 
-Instalación automática de OwnCloud en Ubuntu 22.04 LTS. Script que despliega Apache, MySQL, PHP 7.4 y OwnCloud en un solo paso.
+Instalación automática de OwnCloud en Ubuntu 22.04 LTS. Script que despliega Apache, MySQL, PHP 7.4 y OwnCloud **con configuración automática de usuario administrador**.
 
 ---
 
@@ -12,7 +12,8 @@ Edita el archivo `install.sh` y **cambia estas variables** antes de ejecutarlo:
 
 ```bash
 DB_ROOT_PASS='CambiarRootPassword123'   # ⚠️ CAMBIAR: Contraseña para root de MySQL
-DB_USER_PASS='CambiarUserPassword123'   # ⚠️ CAMBIAR: Contraseña para usuario de OwnCloud
+DB_USER_PASS='CambiarUserPassword123'   # ⚠️ CAMBIAR: Contraseña para usuario de OwnCloud (base de datos)
+OC_ADMIN_PASS='AdminPassword123'        # ⚠️ CAMBIAR: Contraseña del administrador de OwnCloud
 ```
 
 ### 2. REQUISITOS DEL SISTEMA
@@ -22,31 +23,22 @@ DB_USER_PASS='CambiarUserPassword123'   # ⚠️ CAMBIAR: Contraseña para usuar
 - Ejecutar como root o con sudo
 - Puertos 80 disponibles
 
-### 3. IP ESTÁTICA (OPCIONAL)
-
-Si necesitas IP fija, edita el script y cambia:
-
-```bash
-STATIC_IP_ENABLED="yes"
-STATIC_IP="192.168.100.97"
-STATIC_GATEWAY="192.168.100.1"
-STATIC_DNS="192.168.100.1, 8.8.8.8"
-```
-
 ---
 
 ## 📋 Descripción
 
 **Problema que resuelve:**  
-Las instalaciones tradicionales de OwnCloud requieren múltiples pasos manuales (Apache, MySQL, PHP, configuración de trusted domains). Este proceso puede tomar horas y es propenso a errores.
+Las instalaciones tradicionales de OwnCloud requieren múltiples pasos manuales (Apache, MySQL, PHP, configuración de trusted domains y creación del usuario administrador). Este proceso puede tomar horas y es propenso a errores.
 
 **Solución:**  
 Este script automatiza la instalación completa de OwnCloud en Ubuntu 22.04, incluyendo:
 - Apache2 + PHP 7.4 con todas las extensiones necesarias
 - MySQL con base de datos y usuario optimizados
 - Descarga y configuración automática de OwnCloud
-- Configuración opcional de IP estática
+- **Configuración automática del usuario administrador de OwnCloud** (sin intervención web)
+- Instalación y habilitación de la app LDAP
 - Trusted domains configuradas automáticamente
+- Firewall configurado (con preservación del puerto SSH)
 
 ---
 
@@ -81,7 +73,14 @@ chmod +x install.sh
 
 ```bash
 nano install.sh
-# Buscar las variables DB_ROOT_PASS y DB_USER_PASS
+```
+
+Busca y cambia estas tres variables:
+
+```bash
+DB_ROOT_PASS='CambiarRootPassword123'   # Contraseña para root de MySQL
+DB_USER_PASS='CambiarUserPassword123'   # Contraseña para usuario de OwnCloud (base de datos)
+OC_ADMIN_PASS='AdminPassword123'        # Contraseña del administrador de OwnCloud
 ```
 
 ### 4. Ejecutar como root
@@ -100,19 +99,18 @@ El proceso tomará **5-10 minutos**.
 http://IP_DEL_SERVIDOR
 ```
 
+**Usuario:** `admin`  
+**Contraseña:** (la que definiste en `OC_ADMIN_PASS`)
+
 ---
 
-## 🔧 PASOS DESPUÉS DE EJECUTAR
+## 🔧 PASOS DESPUÉS DE EJECUTAR (OPCIONALES)
 
-### Configuración inicial web
+### Configurar LDAP / Active Directory
 
-1. Abre tu navegador y ve a `http://IP_DEL_SERVIDOR`
-2. Crea tu usuario administrador
-3. Ingresa los datos de la base de datos:
-   - Usuario DB: `ownclouduser`
-   - Contraseña DB: `[la que definiste]`
-   - Nombre DB: `ownclouddb`
-4. Completa la instalación
+1. Inicia sesión como administrador
+2. Ve a **Ajustes** → **Administración** → **LDAP / Active Directory**
+3. Configura la conexión a tu servidor LDAP/AD
 
 ### Captura del dashboard
 
@@ -121,10 +119,6 @@ http://IP_DEL_SERVIDOR
 ### Captura de la pantalla de login
 
 ![Login OwnCloud](images/Login_OwnCloud.png)
-
-### Captura del asistente de instalación web
-
-![Asistente de instalación web](images/Instalacion_web.png)
 
 ---
 
@@ -136,7 +130,7 @@ Para conectar clientes Windows al servidor OwnCloud, descarga el cliente oficial
 
 Una vez instalado:
 1. Ingresa la URL de tu servidor: `http://IP_DEL_SERVIDOR`
-2. Usa las credenciales de tu usuario administrador
+2. Usa las credenciales de tu usuario administrador (`admin` / la contraseña que definiste)
 3. Selecciona las carpetas a sincronizar
 
 ---
