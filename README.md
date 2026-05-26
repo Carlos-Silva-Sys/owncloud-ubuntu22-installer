@@ -72,7 +72,7 @@ sudo ./install.sh
 |------------|--------|
 | 🖥️ **Windows / Linux / Mac** | [owncloud.com/desktop-app/](https://owncloud.com/desktop-app/) |
 | 📱 **Android** | [OwnCloud en Google Play](https://play.google.com/store/apps/details?id=com.owncloud.android) |
-| 🍏 **iPhone / iPad** | [OwnCloud en App Store](https://apps.apple.com/app/owncloud/id1359588234) |
+| 🍏 **iPhone / iPad** | [owncloud.com/mobile-apps/](https://owncloud.com/mobile-apps/) (elige tu tienda) |
 
 ---
 
