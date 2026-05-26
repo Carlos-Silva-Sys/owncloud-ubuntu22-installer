@@ -51,6 +51,10 @@ sudo ./install.sh
 
 ![Dashboard OwnCloud](images/Dashboard_owncloud.png)
 
+### Vista de archivos
+
+![Vista de archivos OwnCloud](images/Instalacion_web.png)
+
 ---
 
 ## 📥 CLIENTE DE ESCRITORIO (WINDOWS)
