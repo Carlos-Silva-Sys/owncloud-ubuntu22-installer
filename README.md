@@ -4,6 +4,28 @@ Instalación automática de OwnCloud en Ubuntu 22.04 LTS. Script que despliega A
 
 ---
 
+╔═══════════════════════════════════════════════════════════════════════════╗
+║                         IMPORTANTE - LEA ESTO PRIMERO                       ║
+╚═══════════════════════════════════════════════════════════════════════════╝
+
+[i] Antes de continuar, puede modificar las siguientes variables en el script:
+
+   📁 Sección de BASE DE DATOS:
+      - DB_ROOT_PASS     (Contraseña root de MySQL)
+      - DB_USER_PASS     (Contraseña del usuario de la DB)
+
+   👤 Sección de ADMINISTRADOR OWNCLOUD:
+      - OC_ADMIN_PASS    (Contraseña del usuario administrador)
+
+   🌐 Sección de RED:
+      - STATIC_IP_ENABLED (Habilitar IP estática: yes/no)
+      - STATIC_IP         (IP fija deseada)
+      - STATIC_GATEWAY    (Puerta de enlace)
+
+   💡 Los valores actuales se muestran a continuación
+
+---
+
 ## ⚠️ IMPORTANTE - ANTES DE EJECUTAR
 
 ### 1. CAMBIAR CONTRASEÑAS POR DEFECTO
