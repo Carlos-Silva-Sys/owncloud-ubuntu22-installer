@@ -30,9 +30,16 @@ docker run -d \
 
 **Apache, MySQL, PHP, LDAP paso a paso. Ideal para entender qué pasa detrás.**
 
+> ⚠️ **ANTES DE EJECUTAR:**  
+> Edita el archivo `install.sh` y cambia las siguientes contraseñas por unas seguras:
+> - `DB_ROOT_PASS` (root de MySQL)
+> - `DB_USER_PASS` (usuario de base de datos)
+> - `OC_ADMIN_PASS` (usuario administrador de OwnCloud)
+
 ```bash
 git clone https://github.com/Carlos-Silva-Sys/owncloud-ubuntu22-installer.git
 cd owncloud-ubuntu22-installer
+nano install.sh          # ← CAMBIA LAS CONTRASEÑAS AQUÍ
 chmod +x install.sh
 sudo ./install.sh
 ```
